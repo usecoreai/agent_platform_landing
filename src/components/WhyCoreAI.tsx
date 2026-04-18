@@ -1,4 +1,4 @@
-import { whyCoreAI } from '../data/content';
+import { whyCoreAI, brand } from '../data/content';
 
 export default function WhyCoreAI() {
   return (
@@ -21,6 +21,41 @@ export default function WhyCoreAI() {
             </li>
           ))}
         </ul>
+
+        <div className="mt-10">
+          <a
+            className="btn-coreai"
+            href={brand.mainSite}
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Узнать больше о Core AI на core-ai.ru"
+          >
+            <span className="btn-coreai-inner">
+              <span className="btn-coreai-label">Узнать больше о Core AI</span>
+              <span className="btn-coreai-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" aria-hidden>
+                  <path
+                    d="M12.6667 8H3.33337"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                  <path
+                    d="M8.66671 3.99996L12.6667 7.99996L8.66671 12"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </span>
+            </span>
+          </a>
+          <p className="mt-3 text-[12px] text-ink/50">
+            core-ai.ru — флагманский сайт Core AI
+          </p>
+        </div>
       </div>
     </section>
   );
