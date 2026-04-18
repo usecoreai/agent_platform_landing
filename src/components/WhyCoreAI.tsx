@@ -28,10 +28,10 @@ export default function WhyCoreAI() {
             href={brand.mainSite}
             target="_blank"
             rel="noreferrer"
-            aria-label="Узнать больше о Core AI на core-ai.ru"
+            aria-label="Узнать больше о Core AI и нашей команде на core-ai.ru"
           >
             <span className="btn-coreai-inner">
-              <span className="btn-coreai-label">Узнать больше о Core AI</span>
+              <span className="btn-coreai-label">Узнать больше о Core AI и нашей команде</span>
               <span className="btn-coreai-icon">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" aria-hidden>
                   <path
@@ -52,9 +52,6 @@ export default function WhyCoreAI() {
               </span>
             </span>
           </a>
-          <p className="mt-3 text-[12px] text-ink/50">
-            core-ai.ru — флагманский сайт Core AI
-          </p>
         </div>
       </div>
     </section>
