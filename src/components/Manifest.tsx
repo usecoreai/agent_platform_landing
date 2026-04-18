@@ -6,14 +6,14 @@ export default function Manifest() {
       <div className="container-page">
         <div className="max-w-3xl">
           <span className="eyebrow">Манифест</span>
-          <h2 className="h-section mt-4">{manifest.title}</h2>
+          <h2 className="h-section mt-4 text-balance">{manifest.title}</h2>
           <p className="lead mt-5">{manifest.copy}</p>
         </div>
 
         <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-4">
           {manifest.cards.map((card, i) => (
-            <article key={card.title} className="card relative">
-              <div className="text-[11px] uppercase tracking-widest text-ink/40">0{i + 1}</div>
+            <article key={card.title} className="card card-hover h-full relative">
+              <div className="num">{String(i + 1).padStart(2, '0')}</div>
               <h3 className="h-card mt-2">{card.title}</h3>
               <p className="mt-3 text-sm text-ink/70 leading-relaxed">{card.copy}</p>
             </article>

@@ -11,20 +11,11 @@ export default function Hero() {
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-10 items-start">
           <div className="lg:col-span-6 xl:col-span-7">
             <span className="eyebrow">{hero.eyebrow}</span>
-            <h1 className="h-display mt-4">{hero.headline}</h1>
+            <h1 className="h-display mt-4 text-balance">{hero.headline}</h1>
             <p className="lead mt-5 max-w-2xl">{hero.subheadline}</p>
 
-            <div className="mt-6 rounded-2xl border border-black/10 bg-white/70 backdrop-blur p-4 sm:p-5 max-w-xl">
-              <div className="text-[11px] uppercase tracking-widest text-ink/50">Манифест</div>
-              <p className="mt-1.5 text-base sm:text-lg font-medium tracking-tight text-ink">
-                {hero.manifest[0]}
-                <br />
-                {hero.manifest[1]}
-              </p>
-            </div>
-
-            <div className="mt-7 flex flex-wrap items-center gap-3">
-              <a className="btn-primary" href={mailto.pilot}>
+            <div className="mt-8 flex flex-wrap items-center gap-3">
+              <a className="btn-primary-lg" href={mailto.pilot}>
                 {hero.ctaPrimary}
               </a>
               <a className="btn-ghost" href={mailto.partner}>

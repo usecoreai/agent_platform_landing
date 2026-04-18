@@ -34,7 +34,7 @@ export default function Header() {
             <a
               key={item.id}
               href={`#${item.id}`}
-              className="text-sm text-ink/70 hover:text-ink transition"
+              className="relative text-sm text-ink/70 transition hover:text-ink after:absolute after:left-0 after:-bottom-1 after:h-px after:w-0 after:bg-brand after:transition-all hover:after:w-full"
             >
               {item.label}
             </a>

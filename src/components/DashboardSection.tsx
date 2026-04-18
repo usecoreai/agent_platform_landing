@@ -13,7 +13,7 @@ export default function DashboardSection() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
           <div className="lg:col-span-5">
             <span className="eyebrow">Dashboard</span>
-            <h2 className="h-section mt-4">{dashboardSection.title}</h2>
+            <h2 className="h-section mt-4 text-balance">{dashboardSection.title}</h2>
             <p className="lead mt-5">{dashboardSection.copy}</p>
           </div>
 

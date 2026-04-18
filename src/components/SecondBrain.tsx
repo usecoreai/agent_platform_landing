@@ -29,7 +29,7 @@ export default function SecondBrain() {
           {secondBrain.cards.map((c) => (
             <div
               key={c.title}
-              className="rounded-xl border border-black/10 bg-white p-5 hover:border-brand/40 transition"
+              className="rounded-xl border border-black/10 bg-white p-5 h-full card-hover hover:border-brand/40"
             >
               <div className="text-sm font-semibold text-ink">{c.title}</div>
               <div className="mt-1.5 text-[13px] text-ink/65 leading-relaxed">{c.copy}</div>

@@ -34,7 +34,7 @@ export default function Comparison() {
       <div className="container-page">
         <div className="max-w-3xl">
           <span className="eyebrow">Сравнение</span>
-          <h2 className="h-section mt-4">{comparison.title}</h2>
+          <h2 className="h-section mt-4 text-balance">{comparison.title}</h2>
           <p className="lead mt-5">
             Как CoreAI отличается от обычных AI-чатов, встроенного AI в одной системе и узких виджетов.
           </p>
@@ -65,14 +65,16 @@ export default function Comparison() {
               {comparison.rows.map((row, ri) => (
                 <tr
                   key={row.label}
-                  className={ri % 2 === 0 ? 'bg-white' : 'bg-bg-soft/40'}
+                  className={`transition hover:bg-black/[0.015] ${
+                    ri % 2 === 0 ? 'bg-white' : 'bg-bg-soft/70'
+                  }`}
                 >
                   <td className="px-5 py-3.5 text-[13px] text-ink/85">{row.label}</td>
                   {row.values.map((v, i) => (
                     <td
                       key={i}
                       className={`px-5 py-3.5 ${
-                        i === row.values.length - 1 ? 'bg-brand/[0.04]' : ''
+                        i === row.values.length - 1 ? 'bg-brand/[0.06]' : ''
                       }`}
                     >
                       <Tick on={v} />

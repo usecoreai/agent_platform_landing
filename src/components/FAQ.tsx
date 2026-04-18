@@ -9,14 +9,21 @@ export default function FAQ() {
       <div className="container-page">
         <div className="max-w-3xl">
           <span className="eyebrow">FAQ</span>
-          <h2 className="h-section mt-4">Часто задаваемые вопросы</h2>
+          <h2 className="h-section mt-4 text-balance">Часто задаваемые вопросы</h2>
         </div>
 
-        <div className="mt-10 max-w-3xl divide-y divide-black/5 rounded-2xl border border-black/10 bg-white">
+        <div className="mt-10 max-w-3xl space-y-2.5">
           {faq.map((item, i) => {
             const isOpen = open === i;
             return (
-              <div key={item.q}>
+              <div
+                key={item.q}
+                className={`rounded-2xl border bg-white transition ${
+                  isOpen
+                    ? 'border-brand/30 shadow-[0_8px_28px_-16px_rgba(255,90,31,0.3)]'
+                    : 'border-black/10 hover:border-black/20'
+                }`}
+              >
                 <button
                   type="button"
                   className="flex w-full items-start justify-between gap-4 px-5 py-5 text-left"
@@ -27,13 +34,20 @@ export default function FAQ() {
                     {item.q}
                   </span>
                   <span
-                    className={`mt-1 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-black/10 text-ink/60 transition-transform ${
-                      isOpen ? 'rotate-45 border-brand text-brand' : ''
+                    className={`mt-1 inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full border transition ${
+                      isOpen
+                        ? 'border-brand bg-brand text-white rotate-45'
+                        : 'border-black/15 text-ink/60'
                     }`}
                     aria-hidden
                   >
-                    <svg width="10" height="10" viewBox="0 0 10 10">
-                      <path d="M5 1v8M1 5h8" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+                    <svg width="12" height="12" viewBox="0 0 10 10">
+                      <path
+                        d="M5 1v8M1 5h8"
+                        stroke="currentColor"
+                        strokeWidth="1.8"
+                        strokeLinecap="round"
+                      />
                     </svg>
                   </span>
                 </button>

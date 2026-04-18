@@ -1,5 +1,18 @@
 import { partner, mailto } from '../data/content';
 
+const Check = () => (
+  <svg width="10" height="10" viewBox="0 0 12 12" aria-hidden>
+    <path
+      d="M2 6.5l2.5 2.5L10 3.5"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
+
 export default function PartnerSection() {
   return (
     <section id="partners" className="section">
@@ -10,11 +23,8 @@ export default function PartnerSection() {
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
             <div className="lg:col-span-6">
-              <span className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-brand">
-                <span className="h-[6px] w-[6px] rounded-full bg-brand" />
-                Партнёрам
-              </span>
-              <h2 className="h-section mt-4 text-white">{partner.title}</h2>
+              <span className="eyebrow">Партнёрам</span>
+              <h2 className="h-section mt-4 text-balance text-white">{partner.title}</h2>
               <p className="mt-5 text-base sm:text-lg text-white/80 leading-relaxed">
                 {partner.subheadline}
               </p>
@@ -32,9 +42,12 @@ export default function PartnerSection() {
                 {partner.cards.map((c) => (
                   <div
                     key={c}
-                    className="rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 text-[13px] text-white/85"
+                    className="flex items-start gap-2.5 rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 text-[13px] text-white/90 transition hover:border-brand/40 hover:bg-white/[0.07]"
                   >
-                    {c}
+                    <span className="mt-0.5 inline-flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-brand/15 text-brand">
+                      <Check />
+                    </span>
+                    <span>{c}</span>
                   </div>
                 ))}
               </div>

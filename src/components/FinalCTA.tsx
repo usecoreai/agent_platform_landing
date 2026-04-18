@@ -8,14 +8,14 @@ export default function FinalCTA() {
           <div className="absolute inset-0 -z-10 bg-grid-dark opacity-40" />
           <div className="absolute -top-20 left-1/2 -translate-x-1/2 -z-10 h-[400px] w-[600px] rounded-full bg-brand/20 blur-3xl" />
 
-          <h2 className="text-[32px] sm:text-[44px] font-bold leading-[1.05] tracking-tight max-w-3xl mx-auto">
+          <h2 className="text-[32px] sm:text-[44px] font-bold leading-[1.05] tracking-tight max-w-3xl mx-auto text-balance">
             {finalCta.title}
           </h2>
-          <p className="mt-5 text-base sm:text-lg text-white/75 max-w-2xl mx-auto leading-relaxed">
+          <p className="mt-5 text-base sm:text-lg text-white/80 max-w-2xl mx-auto leading-relaxed">
             {finalCta.copy}
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <a className="btn-primary" href={mailto.pilot}>
+            <a className="btn-primary-lg" href={mailto.pilot}>
               {hero.ctaPrimary}
             </a>
             <a className="btn-ghost-dark" href={mailto.partner}>

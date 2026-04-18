@@ -6,17 +6,15 @@ export default function PilotTimeline() {
       <div className="container-page">
         <div className="max-w-3xl">
           <span className="eyebrow">Пилот</span>
-          <h2 className="h-section mt-4">{pilot.title}</h2>
+          <h2 className="h-section mt-4 text-balance">{pilot.title}</h2>
         </div>
 
         <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
           {pilot.weeks.map((w, i) => (
-            <article key={w.tag} className="card relative h-full">
+            <article key={w.tag} className="card card-hover relative h-full">
               <div className="flex items-center justify-between">
                 <span className="chip-brand">{w.tag}</span>
-                <span className="text-[11px] font-mono text-ink/40">
-                  {String(i + 1).padStart(2, '0')}/04
-                </span>
+                <span className="num">{String(i + 1).padStart(2, '0')}</span>
               </div>
               <h3 className="mt-4 text-base font-semibold text-ink">{w.title}</h3>
               <p className="mt-2 text-[13px] text-ink/65 leading-relaxed">{w.copy}</p>
@@ -26,7 +24,7 @@ export default function PilotTimeline() {
 
         <div className="mt-12 grid grid-cols-1 lg:grid-cols-12 gap-6">
           <div className="lg:col-span-7 card">
-            <div className="text-[11px] uppercase tracking-widest text-ink/50">KPI примеры</div>
+            <div className="text-[11px] uppercase tracking-widest text-ink/55">KPI примеры</div>
             <ul className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-2">
               {pilot.kpis.map((k) => (
                 <li key={k} className="flex items-center gap-2 text-sm text-ink/80">
@@ -38,7 +36,7 @@ export default function PilotTimeline() {
           </div>
           <div className="lg:col-span-5 card-dark flex flex-col justify-between">
             <div>
-              <div className="text-[11px] uppercase tracking-widest text-white/50">
+              <div className="text-[11px] uppercase tracking-widest text-white/60">
                 Готовы к пилоту?
               </div>
               <p className="mt-3 text-lg font-semibold leading-snug">
