@@ -1,8 +1,12 @@
 import { useEffect, useState } from 'react';
-import { nav, hero, mailto } from '../data/content';
+import { nav, hero } from '../data/content';
 import Logo from './Logo';
 
-export default function Header() {
+interface HeaderProps {
+  onOpenContactForm: () => void
+}
+
+export default function Header({ onOpenContactForm }: HeaderProps) {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -41,9 +45,9 @@ export default function Header() {
           ))}
         </nav>
         <div className="hidden lg:flex items-center gap-3">
-          <a className="btn-primary" href={mailto.pilot}>
+          <button className="btn-primary" type="button" onClick={onOpenContactForm}>
             {hero.ctaPrimary}
-          </a>
+          </button>
         </div>
         <button
           className="lg:hidden inline-flex h-10 w-10 items-center justify-center rounded-full border border-black/10 bg-white"
@@ -79,9 +83,16 @@ export default function Header() {
                 {item.label}
               </a>
             ))}
-            <a className="btn-primary mt-4" href={mailto.pilot} onClick={() => setOpen(false)}>
+            <button
+              className="btn-primary mt-4"
+              type="button"
+              onClick={() => {
+                setOpen(false)
+                onOpenContactForm()
+              }}
+            >
               {hero.ctaPrimary}
-            </a>
+            </button>
           </div>
         </div>
       )}

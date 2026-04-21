@@ -2,14 +2,18 @@
   "name": "coreai-platform-landing",
   "private": true,
   "version": "0.1.0",
+  "packageManager": "pnpm@9.15.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "dev:api": "node server/send-form-email-api.mjs",
     "build": "tsc -b && vite build",
     "preview": "vite preview",
-    "typecheck": "tsc -b --noEmit"
+    "typecheck": "tsc -b --noEmit",
+    "send:form-email": "node scripts/send-form-email.mjs"
   },
   "dependencies": {
+    "nodemailer": "^7.0.3",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },

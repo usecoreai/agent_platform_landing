@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import Manifest from './components/Manifest';
@@ -21,13 +22,16 @@ import Comparison from './components/Comparison';
 import FAQ from './components/FAQ';
 import FinalCTA from './components/FinalCTA';
 import Footer from './components/Footer';
+import ContactFormModal from './components/contact-form-modal';
 
 export default function App() {
+  const [isContactFormOpen, setIsContactFormOpen] = useState(false);
+
   return (
     <div className="min-h-screen bg-bg text-ink">
-      <Header />
+      <Header onOpenContactForm={() => setIsContactFormOpen(true)} />
       <main>
-        <Hero />
+        <Hero onOpenContactForm={() => setIsContactFormOpen(true)} />
         <Manifest />
         <Problem />
         <SecondBrain />
@@ -47,9 +51,13 @@ export default function App() {
         <PilotTimeline />
         <Comparison />
         <FAQ />
-        <FinalCTA />
+        <FinalCTA onOpenContactForm={() => setIsContactFormOpen(true)} />
       </main>
       <Footer />
+      <ContactFormModal
+        isOpen={isContactFormOpen}
+        onClose={() => setIsContactFormOpen(false)}
+      />
     </div>
   );
 }
