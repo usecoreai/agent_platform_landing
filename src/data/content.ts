@@ -21,7 +21,7 @@ export const hero = {
   headline: 'Second Brain компании поверх 1С, CRM, SQL и документов',
   subheadline:
     'Не внедряйте ещё одну систему учёта. Подключите CoreAI как агентский слой поверх 1С, CRM, SQL, документов и внутренних сервисов — с пайплайнами, скиллами, A2A-агентами, выбором моделей и enterprise-контролем.',
-  manifest: ['Хранить — задача CRM/ERP.', 'Думать, связывать и действовать — задача CoreAI.'],
+  manifest: ['Хранить — задача CRM/ERP.', 'Думать, связывать и действовать — задача агентов CoreAI.'],
   ctaPrimary: 'Запросить пилот',
   ctaSecondary: 'Стать партнёром',
   badges: [
@@ -29,7 +29,11 @@ export const hero = {
     'Skill Hub',
     'Pipeline Builder',
     'A2A-ready orchestration',
-    '1С / SQL / CRM connectors',
+    '1С Управление Предприятием',
+    '1С Бухгалтерия',
+    '1С УТ',
+    'Postgres SQL',
+    'CRM connectors',
     'Multi-provider LLM',
     'On-prem / Private Cloud',
     'Audit & Approval',
@@ -83,11 +87,11 @@ export const manifest = {
       copy: 'Skills, tools, pipelines, A2A orchestration, approval и audit превращают выводы в управляемые действия.',
     },
   ],
-  punchline: ['Хранить — задача CRM/ERP.', 'Думать, связывать и действовать — задача CoreAI.'],
+  punchline: ['Хранить — задача CRM/ERP.', 'Думать, связывать и действовать — задача агентов CoreAI.'],
 };
 
 export const problem = {
-  title: 'Компания уже накопила знания. Но они заперты в системах.',
+  title: 'Ваша компания уже накопила знания. Но они заперты в системах.',
   items: [
     'Данные живут в 1С, CRM, SQL, документах, почте, задачах и чатах.',
     'Руководители ждут отчёты, потому что данные собираются вручную.',

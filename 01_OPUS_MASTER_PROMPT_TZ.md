@@ -180,7 +180,11 @@ Secondary: `Стать партнёром`
 - Skill Hub
 - Pipeline Builder
 - A2A-ready orchestration
-- 1С / SQL / CRM connectors
+- 1С Управление Предприятием
+- 1С Бухгалтерия
+- 1С УТ
+- Postgres SQL
+- CRM connectors
 - Multi-provider LLM
 - On-prem / Private Cloud
 - Audit & Approval
@@ -296,7 +300,7 @@ Punchline:
 
 Title:
 
-> Компания уже накопила знания. Но они заперты в системах.
+> Ваша компания уже накопила знания. Но они заперты в системах.
 
 Cards:
 
