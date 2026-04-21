@@ -5,10 +5,10 @@ import SecondBrain from '../components/SecondBrain';
 import PlatformPillars from '../components/PlatformPillars';
 import AskVerifyAct from '../components/AskVerifyAct';
 import DemoFlow from '../components/DemoFlow';
-import SkillHub from '../components/SkillHub';
-import PipelineBuilder from '../components/PipelineBuilder';
-import A2ASection from '../components/A2ASection';
-import Connectors from '../components/Connectors';
+// import SkillHub from '../components/SkillHub';       // moved to /platform
+// import PipelineBuilder from '../components/PipelineBuilder'; // moved to /platform
+// import A2ASection from '../components/A2ASection';   // moved to /platform
+// import Connectors from '../components/Connectors';   // moved to /platform
 import DashboardSection from '../components/DashboardSection';
 import ModelProviders from '../components/ModelProviders';
 // import EnterpriseControl from '../components/EnterpriseControl';
@@ -34,17 +34,17 @@ export default function HomePage({ onOpenContactForm }: HomePageProps) {
       <PlatformPillars />
       <AskVerifyAct />
       <DemoFlow />
-      <SkillHub />
-      <PipelineBuilder />
-      <A2ASection />
-      <Connectors />
+      {/* <SkillHub />        → /platform */}
+      {/* <PipelineBuilder /> → /platform */}
+      {/* <A2ASection />      → /platform */}
+      {/* <Connectors />      → /platform */}
       <DashboardSection />
       <ModelProviders />
       {/* <EnterpriseControl /> */}
       <WhyCoreAI />
-      <UseCases />
+      {/* <UseCases /> */}
       <PartnerSection onOpenContactForm={onOpenContactForm} />
-      <PilotTimeline />
+      <PilotTimeline onOpenContactForm={onOpenContactForm} />
       <Comparison />
       <FAQ />
       <FinalCTA onOpenContactForm={onOpenContactForm} />

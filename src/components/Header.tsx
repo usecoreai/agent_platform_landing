@@ -19,9 +19,10 @@ const ChevronDown = ({ open }: { open: boolean }) => (
 
 // IDs nested inside the "Платформа" dropdown
 const PLATFORM_CHILDREN = ['skills', 'pipelines', 'connectors'];
-
-// Top-level nav items rendered as plain links (excludes platform children)
+// Top-level nav items rendered as plain links
 const TOP_LEVEL_IDS = ['platform', /* 'enterprise', */ 'partners', 'pilot'];
+// Hash IDs to observe for scroll-spy (includes platform children for /platform page)
+const OBSERVED_IDS = ['platform', 'partners', 'pilot', 'skills', 'pipelines', 'connectors'];
 
 interface HeaderProps {
   onOpenContactForm: () => void
@@ -47,6 +48,7 @@ export default function Header({ onOpenContactForm }: HeaderProps) {
   const [mobilePlatformOpen, setMobilePlatformOpen] = useState(false);
   const [mobileCasesOpen, setMobileCasesOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState<string>('');
 
   const platform = useDropdown();
   const cases = useDropdown();
@@ -68,21 +70,87 @@ export default function Header({ onOpenContactForm }: HeaderProps) {
     setMobileOpen(false);
     setMobilePlatformOpen(false);
     setMobileCasesOpen(false);
+    setActiveSection('');
+  }, [location.pathname]);
+
+  // Scroll-spy: track which section is currently in view
+  useEffect(() => {
+    const observers: IntersectionObserver[] = [];
+
+    OBSERVED_IDS.forEach((id) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) setActiveSection(id);
+        },
+        { threshold: 0.25, rootMargin: '-64px 0px -45% 0px' },
+      );
+      observer.observe(el);
+      observers.push(observer);
+    });
+
+    return () => observers.forEach((o) => o.disconnect());
   }, [location.pathname]);
 
   const isHome = location.pathname === '/';
   function hashHref(id: string) {
     return isHome ? `#${id}` : `/#${id}`;
   }
+  function platformHref(id: string) {
+    return `/platform#${id}`;
+  }
+
+  // Active state helpers
+  const isPlatformRoute = location.pathname === '/platform';
+  const isCasesRoute = location.pathname.startsWith('/cases');
+
+  function isHashActive(id: string) {
+    return activeSection === id;
+  }
+  function isPlatformChildActive(id: string) {
+    return isPlatformRoute && activeSection === id;
+  }
+
+  // Build class strings
+  function navLinkCls(active: boolean) {
+    return [
+      'relative text-sm transition',
+      'after:absolute after:left-0 after:-bottom-1 after:h-px after:bg-brand after:transition-all',
+      active
+        ? 'text-ink after:w-full'
+        : 'text-ink/70 hover:text-ink after:w-0 hover:after:w-full',
+    ].join(' ');
+  }
+
+  function dropdownTriggerCls(active: boolean) {
+    return [
+      'relative flex items-center gap-1.5 text-sm transition',
+      'after:absolute after:left-0 after:-bottom-1 after:h-px after:bg-brand after:transition-all',
+      active
+        ? 'text-ink after:w-full'
+        : 'text-ink/70 hover:text-ink after:w-0 hover:after:w-full',
+    ].join(' ');
+  }
+
+  function dropdownItemCls(active: boolean) {
+    return [
+      'flex items-center rounded-xl px-3.5 py-2.5 text-[13px] font-medium transition',
+      active ? 'bg-brand/8 text-brand' : 'text-ink hover:bg-bg',
+    ].join(' ');
+  }
+
+  function caseItemCls(slug: string) {
+    const active = location.pathname === `/cases/${slug}`;
+    return [
+      'flex flex-col rounded-xl px-3.5 py-3 transition',
+      active ? 'bg-brand/8' : 'hover:bg-bg',
+    ].join(' ');
+  }
 
   const platformChildren = nav.filter((n) => PLATFORM_CHILDREN.includes(n.id));
   const topLevelItems = nav.filter((n) => TOP_LEVEL_IDS.includes(n.id));
-
-  const navLinkClass =
-    'relative text-sm text-ink/70 transition hover:text-ink after:absolute after:left-0 after:-bottom-1 after:h-px after:w-0 after:bg-brand after:transition-all hover:after:w-full';
-
-  const dropdownTriggerClass =
-    'relative flex items-center gap-1.5 text-sm text-ink/70 transition hover:text-ink after:absolute after:left-0 after:-bottom-1 after:h-px after:w-0 after:bg-brand after:transition-all hover:after:w-full';
 
   return (
     <header
@@ -99,7 +167,7 @@ export default function Header({ onOpenContactForm }: HeaderProps) {
 
           {/* CoreAI решение — first link */}
           {topLevelItems.filter((i) => i.id === 'platform').map((item) => (
-            <a key={item.id} href={hashHref(item.id)} className={navLinkClass}>
+            <a key={item.id} href={hashHref(item.id)} className={navLinkCls(isHashActive(item.id))}>
               {item.label}
             </a>
           ))}
@@ -108,7 +176,7 @@ export default function Header({ onOpenContactForm }: HeaderProps) {
           <div ref={platform.ref} className="relative">
             <button
               type="button"
-              className={dropdownTriggerClass}
+              className={dropdownTriggerCls(isPlatformRoute)}
               onClick={() => platform.setOpen((v) => !v)}
               onMouseEnter={() => platform.setOpen(true)}
               aria-haspopup="true"
@@ -127,8 +195,8 @@ export default function Header({ onOpenContactForm }: HeaderProps) {
                   {platformChildren.map((item) => (
                     <a
                       key={item.id}
-                      href={hashHref(item.id)}
-                      className="flex items-center rounded-xl px-3.5 py-2.5 text-[13px] font-medium text-ink hover:bg-bg transition"
+                      href={platformHref(item.id)}
+                      className={dropdownItemCls(isPlatformChildActive(item.id))}
                       onClick={() => platform.setOpen(false)}
                     >
                       {item.label}
@@ -141,7 +209,7 @@ export default function Header({ onOpenContactForm }: HeaderProps) {
 
           {/* Top-level plain links (excluding platform, rendered first) */}
           {topLevelItems.filter((i) => i.id !== 'platform').map((item) => (
-            <a key={item.id} href={hashHref(item.id)} className={navLinkClass}>
+            <a key={item.id} href={hashHref(item.id)} className={navLinkCls(isHashActive(item.id))}>
               {item.label}
             </a>
           ))}
@@ -150,7 +218,7 @@ export default function Header({ onOpenContactForm }: HeaderProps) {
           <div ref={cases.ref} className="relative">
             <button
               type="button"
-              className={dropdownTriggerClass}
+              className={dropdownTriggerCls(isCasesRoute)}
               onClick={() => cases.setOpen((v) => !v)}
               onMouseEnter={() => cases.setOpen(true)}
               aria-haspopup="true"
@@ -170,10 +238,12 @@ export default function Header({ onOpenContactForm }: HeaderProps) {
                     <Link
                       key={u.slug}
                       to={`/cases/${u.slug}`}
-                      className="flex flex-col rounded-xl px-3.5 py-3 hover:bg-bg transition"
+                      className={caseItemCls(u.slug)}
                       onClick={() => cases.setOpen(false)}
                     >
-                      <span className="text-[13px] font-semibold text-ink leading-snug">{u.role}</span>
+                      <span className={`text-[13px] font-semibold leading-snug ${location.pathname === `/cases/${u.slug}` ? 'text-brand' : 'text-ink'}`}>
+                        {u.role}
+                      </span>
                       <span className="text-[11px] text-ink/50 mt-0.5 leading-snug">{u.effect}</span>
                     </Link>
                   ))}
@@ -181,7 +251,7 @@ export default function Header({ onOpenContactForm }: HeaderProps) {
                 <div className="border-t border-black/5 px-3.5 py-3">
                   <Link
                     to="/cases"
-                    className="text-[11px] font-semibold uppercase tracking-[0.12em] text-brand hover:text-brand/80 transition"
+                    className={`text-[11px] font-semibold uppercase tracking-[0.12em] transition ${location.pathname === '/cases' ? 'text-brand' : 'text-brand/70 hover:text-brand'}`}
                     onClick={() => cases.setOpen(false)}
                   >
                     Все кейсы →
@@ -230,7 +300,7 @@ export default function Header({ onOpenContactForm }: HeaderProps) {
               <a
                 key={item.id}
                 href={hashHref(item.id)}
-                className="px-2 py-3 text-base text-ink/80 hover:text-ink"
+                className={`px-2 py-3 text-base transition ${isHashActive(item.id) ? 'text-brand font-semibold' : 'text-ink/80 hover:text-ink'}`}
                 onClick={() => setMobileOpen(false)}
               >
                 {item.label}
@@ -241,7 +311,7 @@ export default function Header({ onOpenContactForm }: HeaderProps) {
             <div>
               <button
                 type="button"
-                className="flex w-full items-center justify-between px-2 py-3 text-base text-ink/80 hover:text-ink"
+                className={`flex w-full items-center justify-between px-2 py-3 text-base transition ${isPlatformRoute ? 'text-brand font-semibold' : 'text-ink/80 hover:text-ink'}`}
                 onClick={() => setMobilePlatformOpen((v) => !v)}
               >
                 <span>Платформа</span>
@@ -252,8 +322,8 @@ export default function Header({ onOpenContactForm }: HeaderProps) {
                   {platformChildren.map((item) => (
                     <a
                       key={item.id}
-                      href={hashHref(item.id)}
-                      className="rounded-xl px-3 py-2.5 text-sm font-medium text-ink/70 hover:text-ink hover:bg-black/5 transition"
+                      href={platformHref(item.id)}
+                      className={`rounded-xl px-3 py-2.5 text-sm font-medium transition ${isPlatformChildActive(item.id) ? 'text-brand bg-brand/5' : 'text-ink/70 hover:text-ink hover:bg-black/5'}`}
                       onClick={() => setMobileOpen(false)}
                     >
                       {item.label}
@@ -263,12 +333,12 @@ export default function Header({ onOpenContactForm }: HeaderProps) {
               )}
             </div>
 
-            {/* Top-level plain links (excluding platform, rendered first) */}
+            {/* Top-level plain links (excluding platform) */}
             {topLevelItems.filter((i) => i.id !== 'platform').map((item) => (
               <a
                 key={item.id}
                 href={hashHref(item.id)}
-                className="px-2 py-3 text-base text-ink/80 hover:text-ink"
+                className={`px-2 py-3 text-base transition ${isHashActive(item.id) ? 'text-brand font-semibold' : 'text-ink/80 hover:text-ink'}`}
                 onClick={() => setMobileOpen(false)}
               >
                 {item.label}
@@ -279,7 +349,7 @@ export default function Header({ onOpenContactForm }: HeaderProps) {
             <div>
               <button
                 type="button"
-                className="flex w-full items-center justify-between px-2 py-3 text-base text-ink/80 hover:text-ink"
+                className={`flex w-full items-center justify-between px-2 py-3 text-base transition ${isCasesRoute ? 'text-brand font-semibold' : 'text-ink/80 hover:text-ink'}`}
                 onClick={() => setMobileCasesOpen((v) => !v)}
               >
                 <span>Кейсы</span>
@@ -287,17 +357,20 @@ export default function Header({ onOpenContactForm }: HeaderProps) {
               </button>
               {mobileCasesOpen && (
                 <div className="ml-4 flex flex-col gap-0.5 pb-1">
-                  {useCasesDetail.map((u) => (
-                    <Link
-                      key={u.slug}
-                      to={`/cases/${u.slug}`}
-                      className="rounded-xl px-3 py-2.5 text-sm text-ink/70 hover:text-ink hover:bg-black/5 transition"
-                      onClick={() => setMobileOpen(false)}
-                    >
-                      <span className="font-medium">{u.role}</span>
-                      <span className="block text-[11px] text-ink/40 mt-0.5">{u.effect}</span>
-                    </Link>
-                  ))}
+                  {useCasesDetail.map((u) => {
+                    const active = location.pathname === `/cases/${u.slug}`;
+                    return (
+                      <Link
+                        key={u.slug}
+                        to={`/cases/${u.slug}`}
+                        className={`rounded-xl px-3 py-2.5 text-sm transition ${active ? 'text-brand bg-brand/5 font-semibold' : 'text-ink/70 hover:text-ink hover:bg-black/5'}`}
+                        onClick={() => setMobileOpen(false)}
+                      >
+                        <span className="font-medium">{u.role}</span>
+                        <span className="block text-[11px] text-ink/40 mt-0.5">{u.effect}</span>
+                      </Link>
+                    );
+                  })}
                 </div>
               )}
             </div>
