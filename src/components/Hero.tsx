@@ -1,7 +1,11 @@
-import { hero, mailto } from '../data/content';
+import { hero } from '../data/content';
 import ProductMock from './ProductMock';
 
-export default function Hero() {
+interface HeroProps {
+  onOpenContactForm: () => void
+}
+
+export default function Hero({ onOpenContactForm }: HeroProps) {
   return (
     <section id="platform" className="relative overflow-hidden">
       <div className="absolute inset-0 -z-10 gradient-radial" />
@@ -15,12 +19,12 @@ export default function Hero() {
             <p className="lead mt-5 max-w-2xl">{hero.subheadline}</p>
 
             <div className="mt-8 flex flex-wrap items-center gap-3">
-              <a className="btn-primary-lg" href={mailto.pilot}>
+              <button className="btn-primary-lg" type="button" onClick={onOpenContactForm}>
                 {hero.ctaPrimary}
-              </a>
-              <a className="btn-ghost" href={mailto.partner}>
+              </button>
+              <button className="btn-ghost" type="button" onClick={onOpenContactForm}>
                 {hero.ctaSecondary}
-              </a>
+              </button>
             </div>
 
             <ul className="mt-8 flex flex-wrap gap-2">

@@ -1,6 +1,10 @@
-import { finalCta, hero, mailto } from '../data/content';
+import { finalCta, hero } from '../data/content';
 
-export default function FinalCTA() {
+interface FinalCTAProps {
+  onOpenContactForm: () => void
+}
+
+export default function FinalCTA({ onOpenContactForm }: FinalCTAProps) {
   return (
     <section className="section">
       <div className="container-page">
@@ -15,12 +19,12 @@ export default function FinalCTA() {
             {finalCta.copy}
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <a className="btn-primary-lg" href={mailto.pilot}>
+            <button className="btn-primary-lg" type="button" onClick={onOpenContactForm}>
               {hero.ctaPrimary}
-            </a>
-            <a className="btn-ghost-dark" href={mailto.partner}>
+            </button>
+            <button className="btn-ghost-dark" type="button" onClick={onOpenContactForm}>
               {hero.ctaSecondary}
-            </a>
+            </button>
           </div>
         </div>
       </div>

@@ -29,14 +29,36 @@
 ## Локальная разработка
 
 ```bash
-npm install
-npm run dev          # dev-сервер на http://localhost:5173
-npm run build        # сборка в ./dist
-npm run preview      # локальный просмотр сборки
-npm run typecheck    # проверка типов
+pnpm install
+pnpm dev             # dev-сервер на http://localhost:5173
+pnpm build           # сборка в ./dist
+pnpm preview         # локальный просмотр сборки
+pnpm typecheck       # проверка типов
 ```
 
-Все CTA — `mailto:team@core-ai.ru`. Бэкенда нет.
+Все CTA — `mailto:team@core-ai.ru`.
+
+### Node.js скрипт отправки формы на email
+
+Скрипт: `scripts/send-form-email.mjs`
+
+```bash
+cp .env.example .env
+source .env
+pnpm send:form-email
+```
+
+Скрипт отправляет письмо через SMTP и читает данные формы из `FORM_DATA_JSON`.
+
+### Локальный API для формы из модального окна
+
+```bash
+cp .env.example .env
+source .env
+pnpm dev:api
+```
+
+Фронтенд-форма отправляет `POST` на `VITE_FORM_API_URL` (по умолчанию `http://localhost:8787/api/send-form-email`), а API вызывает `send-form-email.mjs`.
 
 ## Редактирование копии
 
@@ -67,7 +89,7 @@ Workflow `.github/workflows/deploy.yml` уже настроен. Каждый pu
 
 ## Чек-лист перед мерджем в main
 
-- `npm run build` проходит без ошибок.
+- `pnpm build` проходит без ошибок.
 - Mobile-вёрстка не ломается (хедер, hero-mockup, таблица сравнения скроллится).
 - CTA указывают на `team@core-ai.ru`.
 - Ссылка на политику обрабатывается: `https://www.core-ai.ru/policy/`.

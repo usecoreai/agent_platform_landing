@@ -4,6 +4,7 @@ dist-ssr
 .DS_Store
 *.local
 .vite
+.pnpm-store
 .env
 .env.local
 *.tsbuildinfo
