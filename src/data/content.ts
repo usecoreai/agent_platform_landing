@@ -7,11 +7,11 @@ export const brand = {
 };
 
 export const nav: { id: string; label: string }[] = [
-  { id: 'platform', label: 'Платформа' },
+  { id: 'platform', label: 'CoreAI решение' },
   { id: 'skills', label: 'Скиллы' },
   { id: 'pipelines', label: 'Пайплайны' },
   { id: 'connectors', label: 'Коннекторы' },
-  { id: 'enterprise', label: 'Enterprise' },
+  // { id: 'enterprise', label: 'Enterprise' },
   { id: 'partners', label: 'Партнёрам' },
   { id: 'pilot', label: 'Пилот' },
 ];

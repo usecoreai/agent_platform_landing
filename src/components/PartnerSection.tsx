@@ -1,4 +1,4 @@
-import { partner, mailto } from '../data/content';
+import { partner } from '../data/content';
 
 const Check = () => (
   <svg width="10" height="10" viewBox="0 0 12 12" aria-hidden>
@@ -13,7 +13,11 @@ const Check = () => (
   </svg>
 );
 
-export default function PartnerSection() {
+interface PartnerSectionProps {
+  onOpenContactForm: () => void
+}
+
+export default function PartnerSection({ onOpenContactForm }: PartnerSectionProps) {
   return (
     <section id="partners" className="section">
       <div className="container-page">
@@ -31,9 +35,9 @@ export default function PartnerSection() {
               <p className="mt-4 text-sm text-white/65 leading-relaxed">{partner.copy}</p>
 
               <div className="mt-7">
-                <a className="btn-primary" href={mailto.partner}>
+                <button className="btn-primary" type="button" onClick={onOpenContactForm}>
                   {partner.cta}
-                </a>
+                </button>
               </div>
             </div>
 
