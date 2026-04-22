@@ -13,7 +13,7 @@ import DashboardSection from '../components/DashboardSection';
 import ModelProviders from '../components/ModelProviders';
 // import EnterpriseControl from '../components/EnterpriseControl';
 import WhyCoreAI from '../components/WhyCoreAI';
-import UseCases from '../components/UseCases';
+// import UseCases from '../components/UseCases';
 import PartnerSection from '../components/PartnerSection';
 import PilotTimeline from '../components/PilotTimeline';
 import Comparison from '../components/Comparison';
