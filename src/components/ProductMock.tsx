@@ -19,9 +19,9 @@ export default function ProductMock() {
         </div>
 
         {/* Main grid */}
-        <div className="grid grid-cols-12 gap-px bg-white/10">
+        <div className="pm-grid grid grid-cols-12 gap-px bg-white/10">
           {/* Left: agents */}
-          <aside className="col-span-12 md:col-span-3 bg-graphite p-4">
+          <aside className="col-span-12 bg-graphite p-4">
             <div className="text-[11px] uppercase tracking-widest text-white/55 mb-3">Agents</div>
             <ul className="space-y-2">
               {productMock.agents.map((a, i) => (
@@ -48,7 +48,7 @@ export default function ProductMock() {
           </aside>
 
           {/* Center: goal + pipeline */}
-          <section className="col-span-12 md:col-span-6 bg-graphite p-5">
+          <section className="col-span-12 bg-graphite p-5">
             <div className="text-[11px] uppercase tracking-widest text-white/55 mb-2">User goal</div>
             <p className="text-[14px] leading-relaxed text-white/95">
               <span className="text-white/50">›</span> {productMock.goal}
@@ -103,7 +103,7 @@ export default function ProductMock() {
           </section>
 
           {/* Right: context */}
-          <aside className="col-span-12 md:col-span-3 bg-graphite p-4">
+          <aside className="col-span-12 bg-graphite p-4">
             <div className="text-[11px] uppercase tracking-widest text-white/55 mb-3">Context</div>
             <ul className="space-y-1.5">
               {productMock.context.map((ctx) => (
