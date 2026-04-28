@@ -7,6 +7,7 @@
     "dev": "vite",
     "dev:api": "node server/send-form-email-api.mjs",
     "build": "tsc -b && vite build",
+    "postbuild": "cp dist/index.html dist/404.html",
     "preview": "vite preview",
     "typecheck": "tsc -b --noEmit",
     "send:form-email": "node scripts/send-form-email.mjs"
