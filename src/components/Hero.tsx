@@ -12,8 +12,8 @@ export default function Hero({ onOpenContactForm }: HeroProps) {
       <div className="absolute inset-x-0 top-0 -z-10 h-[480px] bg-grid opacity-40" />
 
       <div className="container-page pt-14 pb-20 sm:pt-20 sm:pb-28">
-        <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-10 items-start">
-          <div className="lg:col-span-6 xl:col-span-7">
+        <div className="flex flex-col gap-10 lg:gap-12">
+          <div className="max-w-3xl">
             <span className="eyebrow">{hero.eyebrow}</span>
             <h1 className="h-display mt-4 text-balance">{hero.headline}</h1>
             <p className="lead mt-5 max-w-2xl">{hero.subheadline}</p>
@@ -36,9 +36,7 @@ export default function Hero({ onOpenContactForm }: HeroProps) {
             </ul>
           </div>
 
-          <div className="lg:col-span-6 xl:col-span-5">
-            <ProductMock />
-          </div>
+          <ProductMock />
         </div>
       </div>
     </section>

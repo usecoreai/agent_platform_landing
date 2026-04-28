@@ -219,3 +219,14 @@ body {
 .scrollbar-none {
   scrollbar-width: none;
 }
+
+/* ProductMock: container-based 3-column layout */
+.pm-grid {
+  container-type: inline-size;
+}
+
+@container (min-width: 520px) {
+  .pm-grid > *:nth-child(1) { grid-column: span 3; }
+  .pm-grid > *:nth-child(2) { grid-column: span 6; }
+  .pm-grid > *:nth-child(3) { grid-column: span 3; }
+}
