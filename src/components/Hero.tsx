@@ -13,12 +13,14 @@ export default function Hero({ onOpenContactForm }: HeroProps) {
 
       <div className="container-page pt-14 pb-20 sm:pt-20 sm:pb-28">
         <div className="flex flex-col gap-10 lg:gap-12">
-          <div className="max-w-3xl">
-            <span className="eyebrow">{hero.eyebrow}</span>
-            <h1 className="h-display mt-4 text-balance">{hero.headline}</h1>
-            <p className="lead mt-5 max-w-2xl">{hero.subheadline}</p>
+          <div className="flex flex-col gap-8">
+            <div className="max-w-3xl">
+              <span className="eyebrow">{hero.eyebrow}</span>
+              <h1 className="h-display mt-4 text-balance">{hero.headline}</h1>
+              <p className="lead mt-5 max-w-2xl">{hero.subheadline}</p>
+            </div>
 
-            <div className="mt-8 flex flex-wrap items-center gap-3">
+            <div className="flex flex-wrap items-center gap-3">
               <button className="btn-primary-lg" type="button" onClick={onOpenContactForm}>
                 {hero.ctaPrimary}
               </button>
@@ -27,7 +29,7 @@ export default function Hero({ onOpenContactForm }: HeroProps) {
               </button>
             </div>
 
-            <ul className="mt-8 flex flex-wrap gap-2">
+            <ul className="flex flex-wrap gap-2">
               {hero.badges.map((b) => (
                 <li key={b} className="chip">
                   {b}
