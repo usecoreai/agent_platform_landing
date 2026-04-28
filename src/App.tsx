@@ -7,26 +7,35 @@ import HomePage from './pages/HomePage';
 import PlatformPage from './pages/PlatformPage';
 import CasesPage from './pages/CasesPage';
 import UseCasePage from './pages/UseCasePage';
+import { useHashScroll } from './hooks/useHashScroll';
 
-export default function App() {
+function AppContent() {
   const [isContactFormOpen, setIsContactFormOpen] = useState(false);
 
   const openContactForm = () => setIsContactFormOpen(true);
   const closeContactForm = () => setIsContactFormOpen(false);
 
+  useHashScroll();
+
+  return (
+    <div className="min-h-screen bg-bg text-ink">
+      <Header onOpenContactForm={openContactForm} />
+      <Routes>
+        <Route path="/" element={<HomePage onOpenContactForm={openContactForm} />} />
+        <Route path="/platform" element={<PlatformPage onOpenContactForm={openContactForm} />} />
+        <Route path="/cases" element={<CasesPage onOpenContactForm={openContactForm} />} />
+        <Route path="/cases/:slug" element={<UseCasePage onOpenContactForm={openContactForm} />} />
+      </Routes>
+      <Footer />
+      <ContactFormModal isOpen={isContactFormOpen} onClose={closeContactForm} />
+    </div>
+  );
+}
+
+export default function App() {
   return (
     <BrowserRouter>
-      <div className="min-h-screen bg-bg text-ink">
-        <Header onOpenContactForm={openContactForm} />
-        <Routes>
-          <Route path="/" element={<HomePage onOpenContactForm={openContactForm} />} />
-          <Route path="/platform" element={<PlatformPage onOpenContactForm={openContactForm} />} />
-          <Route path="/cases" element={<CasesPage onOpenContactForm={openContactForm} />} />
-          <Route path="/cases/:slug" element={<UseCasePage onOpenContactForm={openContactForm} />} />
-        </Routes>
-        <Footer />
-        <ContactFormModal isOpen={isContactFormOpen} onClose={closeContactForm} />
-      </div>
+      <AppContent />
     </BrowserRouter>
   );
 }
