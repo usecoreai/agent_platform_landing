@@ -71,6 +71,16 @@ export default function Footer() {
               <li>
                 <a
                   className="text-white/75 hover:text-white transition"
+                  href={brand.privacy}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Политика конфиденциальности
+                </a>
+              </li>
+              <li>
+                <a
+                  className="text-white/75 hover:text-white transition"
                   href={brand.policy}
                   target="_blank"
                   rel="noreferrer"

@@ -4,6 +4,8 @@ export const brand = {
   email: 'team@core-ai.ru',
   mainSite: 'https://www.core-ai.ru',
   policy: 'https://www.core-ai.ru/policy/',
+  privacy: 'https://www.core-ai.ru/privacy/',
+  workingHours: 'Пн – Вс, 08:00 – 23:30 (МСК)',
 };
 
 export const nav: { id: string; label: string }[] = [
